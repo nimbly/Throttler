@@ -11,7 +11,7 @@ composer require nimbly/throttler
 
 ### Storage adapter
 You need a place to keep track of the hit counters - cache, database, or whatever. Create an instance of
-a storage adapter to be passed into the Throttler.
+a storage adapter to be passed into the Throttler. See the **Available storage adapters** section further down for complete list of adapters.
 
 ```php
 
@@ -31,6 +31,18 @@ Instantiate the throttler by passing in a storage adapter instance.
 $throttler = new Throttler($storageAdapter);
 
 ```
+
+You may pass in an array of options as the second parameter.
+
+```php
+
+$throttler = new Throttler($storageAdapter, ['prefix' => 'Throttler\\']);
+
+```
+
+#### Options
+
+* **prefix** Prefix to apply to all keys and passed to the storage adapter. Defaults to **Throttler\\**.
 
 ### Hit
 
@@ -92,7 +104,7 @@ class ThrottleRequest implements SomeMiddlewareLibrary
 
 ```
 
-## Provided storage adapters
+## Available storage adapters
 The following list of storage adapters are provided "out of the box":
 
 ### Redis
@@ -158,9 +170,31 @@ $throttler = new Throttler($databaseAdapter);
 
 ```
 
+### APCu
+APCu is an in-memory PHP cache and requires the PECL APCu library available through most Linux package managers.
+
+```php
+
+$apcuAdapter = new Throttler\Adapters\Apcu;
+
+$throttler = new Throttler($apcuAdapter);
+
+```
+
+### Memory
+The memory adapter maintains its throttler purely in memory and does not persist its data between HTTP or CLI requets. This adapter is ideal for testing or other special use cases. Only use this adapter if you know what you are doing.
+
+```php
+
+$memoryAdapter = new Throttler\Adapters\Memory;
+
+$throttler = new Throttler($memoryAdapter);
+
+```
+
 
 ## Custom storage adapters
-A ```Throttler\StorageAdapter``` interface is provided so that you may create your own adapters. It must implement two methods:
+A ```Throttler\StorageAdapter``` interface is provided so that you may create your own adapters for any persistance engine you want. It must implement two methods:
 
 ```get(string $key) : int```
 

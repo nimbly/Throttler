@@ -8,15 +8,19 @@ class Throttler
     /** @var StorageAdapter */
     protected $storageAdapter;
 
+    /** @var string */
+    protected $keyPrefix = "Throttler\\";
+
     /**
      * 
      * @param StorageAdapter $storageAdapter
-     * @param int $limit
-     * @param int $decay
+     * @param array $options
      */
-    public function __construct(StorageAdapter $storageAdapter)
+    public function __construct(StorageAdapter $storageAdapter, array $options = [])
     {
         $this->storageAdapter = $storageAdapter;
+
+        $this->keyPrefix = $options['prefix'] ?? $this->keyPrefix;
     }
 
     /**
@@ -55,6 +59,6 @@ class Throttler
      */
     protected function makeKey($id)
     {
-        return "Throttler\\{$id}";
+        return "{$this->keyPrefix}{$id}";
     }
 }

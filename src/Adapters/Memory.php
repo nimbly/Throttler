@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Adapters;
+namespace Throttler\Adapters;
 
 use Throttler\StorageAdapter;
 
@@ -53,4 +53,3 @@ class Memory implements StorageAdapter
         return null;
     }
 }
-

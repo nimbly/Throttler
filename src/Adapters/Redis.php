@@ -5,7 +5,6 @@ namespace Throttler\Adapters;
 use Predis\Client;
 use Throttler\StorageInterface;
 
-
 class Redis implements StorageInterface
 {
     /** @var Client */
