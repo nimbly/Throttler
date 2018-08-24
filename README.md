@@ -1,5 +1,5 @@
 # Throttler
-A framework agnostic request rate limiter able.
+A framework agnostic request rate limiter.
 
 ## Installtion
 

@@ -1,6 +1,6 @@
 {
     "name": "nimbly/throttler",
-    "description": "Throttle requests",
+    "description": "A framework agnostic rate limiter.",
     "type": "library",
     "license": "MIT",
     "authors": [
