@@ -4,6 +4,12 @@ namespace Throttler\Adapters;
 
 use Throttler\StorageAdapter;
 
+/**
+ * APCu cache adapter
+ * 
+ * @package Throttler\Adapters
+ * 
+ */
 class Apcu implements StorageAdapter
 {
     /**

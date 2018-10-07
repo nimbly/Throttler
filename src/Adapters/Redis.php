@@ -5,6 +5,14 @@ namespace Throttler\Adapters;
 use Predis\Client;
 use Throttler\StorageInterface;
 
+/**
+ * Redis cache adapter
+ * 
+ * The redis cache adapter requries a connection to a redis instance and the *predis/predis* package.
+ * 
+ * @package Throttler\Adapters
+ * 
+ */
 class Redis implements StorageInterface
 {
     /** @var Client */

@@ -1,7 +1,7 @@
 # Throttler
 A framework agnostic request rate limiter.
 
-## Installtion
+## Installation
 
 ```bash
 composer require nimbly/throttler

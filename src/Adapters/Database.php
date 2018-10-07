@@ -5,6 +5,12 @@ namespace Throttler\Adapters;
 use PDO;
 use Throttler\StorageAdapter;
 
+/**
+ * Database (PDO) adapter
+ * The database adapter uses any PDO compatible database.
+ * 
+ * @package Throttle\Adapters
+ */
 class Database implements StorageAdapter
 {
     /** @var PDO */

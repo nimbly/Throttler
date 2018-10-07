@@ -4,6 +4,14 @@ namespace Throttler\Adapters;
 
 use Throttler\StorageAdapter;
 
+/**
+ * Memory adapter
+ * 
+ * The memory adapter maintains state only within the current request or for the duration of a script.
+ * 
+ * @package Throttler\Adapters
+ * 
+ */
 class Memory implements StorageAdapter
 {
     /** @var array */
