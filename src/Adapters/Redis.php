@@ -3,7 +3,7 @@
 namespace Throttler\Adapters;
 
 use Predis\Client;
-use Throttler\StorageInterface;
+use Throttler\StorageAdapter;
 
 /**
  * Redis cache adapter
@@ -13,7 +13,7 @@ use Throttler\StorageInterface;
  * @package Throttler\Adapters
  * 
  */
-class Redis implements StorageInterface
+class Redis implements StorageAdapter
 {
     /** @var Client */
     protected $client;
