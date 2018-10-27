@@ -1,5 +1,5 @@
 {
-    "name": "nimbly\/throttler",
+    "name": "nimbly/throttler",
     "description": "A framework agnostic rate limiter.",
     "type": "library",
     "license": "MIT",
@@ -18,8 +18,8 @@
         }
     },
     "require-dev": {
-        "predis\/predis": "^1.1",
-        "phpunit\/phpunit": "^7.3"
+        "predis/predis": "^1.1",
+        "phpunit/phpunit": "^7.3"
     },
     "autoload-dev": {
         "psr-4": {
@@ -27,7 +27,6 @@
         }
     },
     "scripts": {
-        "test": "vendor\/bin\/phpunit"
-    },
-    "version": "1.0.0"
+        "test": "vendor/bin/phpunit"
+    }
 }
