@@ -35,6 +35,12 @@ class Database implements StorageAdapter
     /** @var int */
     protected $garbageCollectionChance = 5;
 
+    /**
+     * Database adapter constructor.
+     *
+     * @param PDO $pdo
+     * @param array $options
+     */
     public function __construct(PDO $pdo, array $options = [])
     {
         $this->pdo = $pdo;
