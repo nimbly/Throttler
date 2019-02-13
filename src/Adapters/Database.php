@@ -13,26 +13,50 @@ use Throttler\StorageAdapter;
  */
 class Database implements StorageAdapter
 {
-    /** @var PDO */
+    /**
+     * PDO connection instance.
+     *
+     * @var PDO
+     */
     protected $pdo;
 
-    /** @var string */
+    /**
+     * Table name.
+     *
+     * @var string
+     */
     protected $table = "throttler";
 
     // Columns
 
-    /** @var string */
+    /**
+     * "key" column name
+     *
+     * @var string
+     */
     protected $keyColumn = "key";
 
-    /** @var string */
+    /**
+     * "hits" column name
+     *
+     * @var string
+     */
     protected $hitsColumn = "hits";
 
-    /** @var string */
+    /**
+     * "expires_at" column name
+     *
+     * @var string
+     */
     protected $expiresAtColumn = "expires_at";
 
     // Garbage collection
 
-    /** @var int */
+    /**
+     * Garbage collection chance (expressed as integer percentage.)
+     *
+     * @var integer
+     */
     protected $garbageCollectionChance = 5;
 
     /**
@@ -90,7 +114,7 @@ class Database implements StorageAdapter
             $this->gc();
         }
 
-        return $hits;
+        return (int) $hits;
     }
 
     /**

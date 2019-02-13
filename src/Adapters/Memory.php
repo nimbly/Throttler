@@ -14,7 +14,11 @@ use Throttler\StorageAdapter;
  */
 class Memory implements StorageAdapter
 {
-    /** @var array */
+    /**
+     * Array of throttler keys.
+     *
+     * @var array
+     */
     protected $keys = [];
 
     /**

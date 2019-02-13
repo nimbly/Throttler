@@ -5,13 +5,26 @@ namespace Throttler;
 
 class Throttler
 {
-    /** @var StorageAdapter */
+    /**
+     * The StorageAdapter instance.
+     *
+     * @var StorageAdapter
+     */
     protected $storageAdapter;
 
-    /** @var string */
+    /**
+     * Key prefix prepended to keys before passing to StorageAdapter.
+     *
+     * @var string
+     */
     protected $keyPrefix = "Throttler\\";
 
     /**
+     * Throttler constructor.
+     * 
+     * Options may contain any of the following key/value pairs:
+     *      "prefix": String to be prepended to keys before being passed to StorageAdapter. Defaults to "Throttler\".
+     * 
      * 
      * @param StorageAdapter $storageAdapter
      * @param array $options

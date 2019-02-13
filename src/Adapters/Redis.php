@@ -15,7 +15,11 @@ use Throttler\StorageAdapter;
  */
 class Redis implements StorageAdapter
 {
-    /** @var Client */
+    /**
+     * Predis\Client instance.
+     *
+     * @var Client
+     */
     protected $client;
 
     /**
