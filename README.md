@@ -1,3 +1,6 @@
+![Travis CI](https://travis-ci.org/nimbly/Throttler.svg?branch=master)
+
+
 # Throttler
 A framework agnostic request rate limiter.
 
