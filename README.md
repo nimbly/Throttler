@@ -1,10 +1,13 @@
-[![Travis CI](https://travis-ci.org/nimbly/Throttler.svg?branch=master)](https://travis-ci.org/nimbly/Throttler)
-[![Latest Stable Version](https://poser.pugx.org/nimbly/throttler/v/stable)](https://packagist.org/packages/nimbly/throttler)
-[![License](https://poser.pugx.org/nimbly/throttler/license)](https://packagist.org/packages/nimbly/throttler)
-
-
 # Throttler
+[![Latest Stable Version](https://img.shields.io/packagist/v/nimbly/Throttler.svg?style=flat-square)](https://packagist.org/packages/nimbly/throttler)
+[![Build Status](https://img.shields.io/travis/nimbly/Throttler.svg?style=flat-square)](https://travis-ci.org/nimbly/Throttler)
+[![License](https://img.shields.io/github/license/nimbly/Throttler.svg?style=flat-square)](https://packagist.org/packages/nimbly/throttler)
+
+
 A framework agnostic request rate limiter.
+
+## Description
+Throttler can rate limit on any data point you like: IP address, user ID, API key, or any other uniquely identifying information you have access to.
 
 ## Installation
 
@@ -26,10 +29,9 @@ $storageAdapter = new Throttler\Adapters\Redis(
 
 ```
 
-
 ### Throttler
 
-Instantiate the throttler by passing in a storage adapter instance.
+Instantiate Throttler by passing in a storage adapter instance.
 
 ```php
 
@@ -37,19 +39,21 @@ $throttler = new Throttler($storageAdapter);
 
 ```
 
-You may pass in an array of options as the second parameter.
+## Constructor Options
+
+You may pass in an array of key => value pair options as the second parameter of the constructor.
 
 ```php
 
-$throttler = new Throttler($storageAdapter, ['prefix' => 'Throttler\\']);
+$throttler = new Throttler($storageAdapter, ['key' => 'value']);
 
 ```
 
-#### Options
+Supported options:
 
 * **prefix** Prefix to apply to all keys and passed to the storage adapter. Defaults to **Throttler\\**.
 
-### Hit
+## Methods
 
 ```hit(string $id, int $limit, int $decay) : boolean```
 
@@ -69,7 +73,7 @@ if( $throttler->hit($request->ipAddress(), 120, 60) === false ){
 
 ```
 
-### Check
+---
 
 ```check(string $id) : int```
 
@@ -78,8 +82,8 @@ Check (but do not increment) the current rate limit counter for the given ID.
 
 ```php
 
-if( $throttler->check($request->ipAddress()) >= $warningCount ){
-    throw new EnhanceYourCalmHttpException('Dude, chill.');
+if( $throttler->check($request->user->id) >= $warningThreshold ){
+    $response = $response->withHeader("X-Rate-Limit", "Warning");
 }
 
 ```
@@ -205,6 +209,28 @@ A ```Throttler\StorageAdapter``` interface is provided so that you may create yo
 
 Returns the given key's current counter or 0 if key does not exist.
 
+---
+
 ```increment(string $key, int $decay) : int```
 
 Increments the counter for the given key. If key does not exist, it must create it and set its counter to 1 as well as set the counter to expire after **$decay** seconds. Returns the counter value.
+
+
+```php
+
+use Throttler\StorageAdapter;
+
+class MyStorageAdapter implements StorageAdapter
+{
+    public function get(string $key): int
+    {
+        // Get $key from storage engine.
+    }
+
+    public function increment(string $key, int $decay): int
+    {
+        // Increment $key on storage engine and return new value.
+    }
+}
+
+```
