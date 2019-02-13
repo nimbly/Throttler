@@ -1,4 +1,6 @@
-![Travis CI](https://travis-ci.org/nimbly/Throttler.svg?branch=master)
+[![Travis CI](https://travis-ci.org/nimbly/Throttler.svg?branch=master)](https://travis-ci.org/nimbly/Throttler)
+[![Latest Stable Version](https://poser.pugx.org/nimbly/throttler/v/stable)](https://packagist.org/packages/nimbly/throttler)
+[![License](https://poser.pugx.org/nimbly/throttler/license)](https://packagist.org/packages/nimbly/throttler)
 
 
 # Throttler
