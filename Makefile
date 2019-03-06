@@ -1,14 +1,13 @@
 .PHONY: release
 
 analyze:
-	vendor/bin/psalm --show-info=false
-
-report:
-	vendor/bin/psalm --report=debug/psalm.xml
-	sensible-browser debug/psalm.xml
+	vendor/bin/psalm
 
 test:
 	vendor/bin/phpunit
+
+coverage:
+	vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
 
 release:
 	/usr/bin/env php release

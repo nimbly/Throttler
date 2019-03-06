@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Throttler\Adapters;
 
@@ -79,7 +79,7 @@ class Database implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function get($key)
+    public function get($key): int
     {
         $statement = $this->pdo->prepare("select {$this->hitsColumn} from {$this->table} where {$this->keyColumn} = ?");
         $statement->execute([$key]);
@@ -89,7 +89,7 @@ class Database implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function increment($key, $decay)
+    public function increment($key, $decay): int
     {
         // Record not found, lets create a new one.
         if( ($record = $this->fetchRecord($key)) == null ){
@@ -121,9 +121,9 @@ class Database implements StorageAdapter
      * Fetch a record from the database.
      *
      * @param string $key
-     * @return \StdClass
+     * @return object
      */
-    protected function fetchRecord($key)
+    protected function fetchRecord($key): object
     {
         $statement = $this->pdo->prepare("select * from {$this->table} where {$this->keyColumn} = ?");
         $statement->execute([$key]);
@@ -135,7 +135,7 @@ class Database implements StorageAdapter
      *
      * @return void
      */
-    protected function gc()
+    protected function gc(): void
     {
         $statement = $this->pdo->prepare("delete from {$this->table} where {$this->expiresAtColumn} < ?");
         $statement->execute([time()]);

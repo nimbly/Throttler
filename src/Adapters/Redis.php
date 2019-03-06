@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Throttler\Adapters;
 
@@ -35,7 +35,7 @@ class Redis implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function get($key)
+    public function get($key): int
     {
         return (int) $this->client->get($key);
     }
@@ -43,7 +43,7 @@ class Redis implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function increment($key, $decay)
+    public function increment($key, $decay): int
     {
         if( $this->client->setnx($key, 1) ){
             $this->client->expire($key, $decay);

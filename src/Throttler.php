@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Throttler;
 
@@ -42,7 +42,7 @@ class Throttler
      * @param string $id
      * @return int
      */
-    public function check($id)
+    public function check($id): int
     {
         return $this->storageAdapter->get($this->makeKey($id));
     }
@@ -55,7 +55,7 @@ class Throttler
      * @param int $decay Time span in seconds.
      * @return boolean
      */
-    public function hit($id, $limit, $decay)
+    public function hit($id, $limit, $decay): bool
     {
         if( $this->storageAdapter->increment($this->makeKey($id), $decay) > $limit ){
             return false;
@@ -70,7 +70,7 @@ class Throttler
      * @param string $id
      * @return string
      */
-    protected function makeKey($id)
+    protected function makeKey($id): string
     {
         return "{$this->keyPrefix}{$id}";
     }

@@ -1,11 +1,15 @@
 <?php
 
-namespace Tests;
+namespace Throttler\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Throttler\Adapters\Memory;
 use Throttler\Throttler;
 
+/**
+ * @covers Throttler\Throttler
+ * @covers Throttler\Adapters\Memory
+ */
 class ThrottlerTest extends TestCase
 {
     /** @var string */

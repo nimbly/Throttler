@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Throttler\Adapters;
 
@@ -15,7 +15,7 @@ class Apcu implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function get($key)
+    public function get($key): int
     {
         $hits = apcu_fetch($key, $success);
 
@@ -29,7 +29,7 @@ class Apcu implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function increment($key, $decay)
+    public function increment($key, $decay): int
     {
         if( apcu_exists($key) == false ){
             apcu_add($key, 1, (int) $decay);
