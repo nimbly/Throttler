@@ -3,7 +3,9 @@ php:
   - '7.2'
 
 before_script:
-  - pecl install apcu
+  - sudo apt-get install php-apcu --assume-yes
+  - sudo apt-get install redis --assume-yes
+  - sudo systemctl start redis
 
 install:
   - composer install
