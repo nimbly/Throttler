@@ -19,6 +19,9 @@
     },
     "require-dev": {
         "phpunit\/phpunit": "^7.3",
+        "ext-PDO": "*",
+        "ext-sqlite3": "*",
+        "ext-apcu": "*",
         "vimeo/psalm": "^3.0",
         "php-coveralls/php-coveralls": "^2.1",
         "predis/predis": "^1.1"

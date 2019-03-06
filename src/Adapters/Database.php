@@ -123,11 +123,16 @@ class Database implements StorageAdapter
      * @param string $key
      * @return object
      */
-    protected function fetchRecord($key): object
+    protected function fetchRecord($key): ?object
     {
         $statement = $this->pdo->prepare("select * from {$this->table} where {$this->keyColumn} = ?");
         $statement->execute([$key]);
-        return $statement->fetch(PDO::FETCH_OBJ);
+
+        if( ($record = $statement->fetch(PDO::FETCH_OBJ)) === false ){
+            return null;
+        }
+
+        return $record;
     }
 
     /**
