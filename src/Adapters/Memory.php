@@ -6,11 +6,11 @@ use Throttler\StorageAdapter;
 
 /**
  * Memory adapter
- * 
+ *
  * The memory adapter maintains state only within the current request or for the duration of a script.
- * 
+ *
  * @package Throttler\Adapters
- * 
+ *
  */
 class Memory implements StorageAdapter
 {
@@ -43,7 +43,7 @@ class Memory implements StorageAdapter
 
             $this->keys[$key] = [
                 'count' => 0,
-                'expires_at' => (int) (time() + $decay),
+                'expires_at' => (int) (\time() + $decay),
             ];
         }
 
@@ -52,13 +52,13 @@ class Memory implements StorageAdapter
 
     /**
      * Get a record from the keys or return null if key not found.
-     * 
+     *
      * @param string $key
      * @return array|null
      */
     private function getRecord($key): ?array
     {
-        if( array_key_exists($key, $this->keys) ){
+        if( \array_key_exists($key, $this->keys) ){
             return $this->keys[$key];
         }
 

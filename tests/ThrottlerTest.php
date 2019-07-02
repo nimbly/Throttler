@@ -24,9 +24,9 @@ class ThrottlerTest extends TestCase
     }
 
     /**
-     * 
+     *
      * Tests that nonexistent keys still increment.
-     * 
+     *
      * @return void
      */
     public function test_increments_nonexistent_key()
@@ -58,7 +58,7 @@ class ThrottlerTest extends TestCase
         for( $i=0; $i < 5; $i++ ){
             $this->throttler->hit($this->testKey, 5, 60);
         }
-        
+
         $this->assertFalse($this->throttler->hit($this->testKey, 5, 60));
     }
 

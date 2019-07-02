@@ -21,11 +21,11 @@ class Throttler
 
     /**
      * Throttler constructor.
-     * 
+     *
      * Options may contain any of the following key/value pairs:
      *      "prefix": String to be prepended to keys before being passed to StorageAdapter. Defaults to "Throttler\".
-     * 
-     * 
+     *
+     *
      * @param StorageAdapter $storageAdapter
      * @param array $options
      */
@@ -49,7 +49,7 @@ class Throttler
 
     /**
      * Hit the throttle counter.
-     * 
+     *
      * @param string $id The ID you'd like to group requests by. Could be IP address, a user ID, or any value that uniquely identifies the source of a request.
      * @param int $limit Number of requests allowed in time span
      * @param int $decay Time span in seconds.

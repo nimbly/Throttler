@@ -8,7 +8,7 @@ use Throttler\StorageAdapter;
 /**
  * Database (PDO) adapter
  * The database adapter uses any PDO compatible database.
- * 
+ *
  * @package Throttle\Adapters
  */
 class Database implements StorageAdapter
@@ -143,6 +143,6 @@ class Database implements StorageAdapter
     protected function gc(): void
     {
         $statement = $this->pdo->prepare("delete from {$this->table} where {$this->expiresAtColumn} < ?");
-        $statement->execute([time()]);
+        $statement->execute([\time()]);
     }
 }

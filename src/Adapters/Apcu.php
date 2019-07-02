@@ -6,9 +6,9 @@ use Throttler\StorageAdapter;
 
 /**
  * APCu cache adapter
- * 
+ *
  * @package Throttler\Adapters
- * 
+ *
  */
 class Apcu implements StorageAdapter
 {
@@ -17,7 +17,7 @@ class Apcu implements StorageAdapter
      */
     public function get($key): int
     {
-        $hits = apcu_fetch($key, $success);
+        $hits = \apcu_fetch($key, $success);
 
         if( !$success ){
             return 0;
@@ -31,11 +31,11 @@ class Apcu implements StorageAdapter
      */
     public function increment($key, $decay): int
     {
-        if( apcu_exists($key) == false ){
-            apcu_add($key, 1, (int) $decay);
+        if( \apcu_exists($key) == false ){
+            \apcu_add($key, 1, (int) $decay);
             return 1;
         }
 
-        return (int) apcu_inc($key);
+        return (int) \apcu_inc($key);
     }
 }

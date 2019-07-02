@@ -7,11 +7,11 @@ use Throttler\StorageAdapter;
 
 /**
  * Redis cache adapter
- * 
+ *
  * The redis cache adapter requries a connection to a redis instance and the *predis/predis* package.
- * 
+ *
  * @package Throttler\Adapters
- * 
+ *
  */
 class Redis implements StorageAdapter
 {
