@@ -42,7 +42,7 @@ class Throttler
      * @param string $id
      * @return int
      */
-    public function check($id): int
+    public function check(string $id): int
     {
         return $this->storageAdapter->get($this->makeKey($id));
     }
@@ -55,7 +55,7 @@ class Throttler
      * @param int $decay Time span in seconds.
      * @return boolean
      */
-    public function hit($id, $limit, $decay): bool
+    public function hit(string $id, int $limit, int $decay): bool
     {
         if( $this->storageAdapter->increment($this->makeKey($id), $decay) > $limit ){
             return false;

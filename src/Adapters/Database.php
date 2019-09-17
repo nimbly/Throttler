@@ -79,7 +79,7 @@ class Database implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function get($key): int
+    public function get(string $key): int
     {
         $statement = $this->pdo->prepare("select {$this->hitsColumn} from {$this->table} where {$this->keyColumn} = ?");
         $statement->execute([$key]);
@@ -89,7 +89,7 @@ class Database implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function increment($key, $decay): int
+    public function increment(string $key, int $decay): int
     {
         // Record not found, lets create a new one.
         if( ($record = $this->fetchRecord($key)) == null ){
@@ -110,7 +110,7 @@ class Database implements StorageAdapter
 
         // Run garbage collection?
         if( $this->garbageCollectionChance > 0 &&
-            $this->garbageCollectionChance >= mt_rand(1, 100) ){
+            $this->garbageCollectionChance >= \mt_rand(1, 100) ){
             $this->gc();
         }
 
@@ -123,7 +123,7 @@ class Database implements StorageAdapter
      * @param string $key
      * @return object
      */
-    protected function fetchRecord($key): ?object
+    protected function fetchRecord(string $key): ?object
     {
         $statement = $this->pdo->prepare("select * from {$this->table} where {$this->keyColumn} = ?");
         $statement->execute([$key]);

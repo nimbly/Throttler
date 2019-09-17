@@ -15,7 +15,7 @@ class Apcu implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function get($key): int
+    public function get(string $key): int
     {
         $hits = \apcu_fetch($key, $success);
 
@@ -29,7 +29,7 @@ class Apcu implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function increment($key, $decay): int
+    public function increment(string $key, int $decay): int
     {
         if( \apcu_exists($key) == false ){
             \apcu_add($key, 1, (int) $decay);

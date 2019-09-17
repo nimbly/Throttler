@@ -10,7 +10,7 @@ interface StorageAdapter
      * @param string $key Unique key for source of request.
      * @return int
      */
-    public function get($key): int;
+    public function get(string $key): int;
 
     /**
      * Increment counter or create if it does not exist.
@@ -19,5 +19,5 @@ interface StorageAdapter
      * @param int $decay Number of seconds to decay counter.
      * @return int
      */
-    public function increment($key, $decay): int;
+    public function increment(string $key, int $decay): int;
 }

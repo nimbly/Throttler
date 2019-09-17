@@ -24,7 +24,7 @@ class Memory implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function get($key): int
+    public function get(string $key): int
     {
         if( ($record = $this->getRecord($key)) === null ){
             return 0;
@@ -36,7 +36,7 @@ class Memory implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function increment($key, $decay): int
+    public function increment(string $key, int $decay): int
     {
         if( ($record = $this->getRecord($key)) === null ||
             $record['expires_at'] < time() ){
@@ -56,12 +56,8 @@ class Memory implements StorageAdapter
      * @param string $key
      * @return array|null
      */
-    private function getRecord($key): ?array
+    private function getRecord(string $key): ?array
     {
-        if( \array_key_exists($key, $this->keys) ){
-            return $this->keys[$key];
-        }
-
-        return null;
+		return $this->keys[$key] ?? null;
     }
 }

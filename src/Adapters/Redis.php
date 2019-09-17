@@ -35,7 +35,7 @@ class Redis implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function get($key): int
+    public function get(string $key): int
     {
         return (int) $this->client->get($key);
     }
@@ -43,7 +43,7 @@ class Redis implements StorageAdapter
     /**
      * @inheritDoc
      */
-    public function increment($key, $decay): int
+    public function increment(string $key, int $decay): int
     {
         if( $this->client->setnx($key, 1) ){
             $this->client->expire($key, $decay);
