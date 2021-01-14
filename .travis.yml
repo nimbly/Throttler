@@ -1,4 +1,10 @@
 language: php
+
+addons:
+  apt:
+    packages:
+      - php-apcu
+      - sqlite3
 php:
   - '7.3'
   - '7.4'
@@ -6,12 +12,13 @@ php:
 
 services:
   - redis
-  - sqlite3
 
 install:
+  - sudo apt
   - composer install
 
 script:
+  - make analyze
   - make coverage
 
 after_success:
