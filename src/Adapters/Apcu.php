@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Throttler\Adapters;
+namespace Nimbly\Throttler\Adapters;
 
-use Throttler\StorageAdapter;
+use Nimbly\Throttler\StorageAdapter;
 
 /**
  * APCu cache adapter
@@ -32,7 +32,7 @@ class Apcu implements StorageAdapter
     public function increment(string $key, int $decay): int
     {
         if( \apcu_exists($key) == false ){
-            \apcu_add($key, 1, (int) $decay);
+            \apcu_add($key, 1, $decay);
             return 1;
         }
 

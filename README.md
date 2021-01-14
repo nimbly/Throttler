@@ -218,7 +218,7 @@ Increments the counter for the given key. If key does not exist, it must create 
 
 ```php
 
-use Throttler\StorageAdapter;
+use Nimbly\Throttler\StorageAdapter;
 
 class MyStorageAdapter implements StorageAdapter
 {

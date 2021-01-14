@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Throttler\Adapters;
+namespace Nimbly\Throttler\Adapters;
 
 use PDO;
-use Throttler\StorageAdapter;
+use Nimbly\Throttler\StorageAdapter;
 
 /**
  * Database (PDO) adapter

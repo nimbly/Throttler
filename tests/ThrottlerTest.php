@@ -1,10 +1,10 @@
 <?php
 
-namespace Throttler\Tests;
+namespace Nimbly\Throttler\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Throttler\Adapters\Memory;
-use Throttler\Throttler;
+use Nimbly\Throttler\Adapters\Memory;
+use Nimbly\Throttler\Throttler;
 
 /**
  * @covers Throttler\Throttler
@@ -18,7 +18,7 @@ class ThrottlerTest extends TestCase
     /** @var Throttler */
     protected $throttler;
 
-    public function setup()
+    public function setup(): void
     {
         $this->throttler = new Throttler(new Memory);
     }
@@ -29,7 +29,7 @@ class ThrottlerTest extends TestCase
      *
      * @return void
      */
-    public function test_increments_nonexistent_key()
+    public function test_increments_nonexistent_key(): void
     {
         $this->throttler->hit($this->testKey, 5, 60);
         $this->assertEquals(1, $this->throttler->check($this->testKey));
@@ -40,7 +40,7 @@ class ThrottlerTest extends TestCase
      *
      * @return void
      */
-    public function test_increments_existing_key()
+    public function test_increments_existing_key(): void
     {
         $this->throttler->hit($this->testKey, 5, 60);
         $this->throttler->hit($this->testKey, 5, 60);
@@ -53,7 +53,7 @@ class ThrottlerTest extends TestCase
      *
      * @return void
      */
-    public function test_hitting_limit_returns_false()
+    public function test_hitting_limit_returns_false(): void
     {
         for( $i=0; $i < 5; $i++ ){
             $this->throttler->hit($this->testKey, 5, 60);
@@ -67,7 +67,7 @@ class ThrottlerTest extends TestCase
      *
      * @return void
      */
-    public function test_under_limit_returns_true()
+    public function test_under_limit_returns_true(): void
     {
         $this->assertTrue($this->throttler->hit($this->testKey, 5, 60));
     }

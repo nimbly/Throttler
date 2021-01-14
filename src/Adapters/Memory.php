@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Throttler\Adapters;
+namespace Nimbly\Throttler\Adapters;
 
-use Throttler\StorageAdapter;
+use Nimbly\Throttler\StorageAdapter;
 
 /**
  * Memory adapter

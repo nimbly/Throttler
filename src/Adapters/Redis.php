@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Throttler\Adapters;
+namespace Nimbly\Throttler\Adapters;
 
 use Predis\Client;
-use Throttler\StorageAdapter;
+use Nimbly\Throttler\StorageAdapter;
 
 /**
  * Redis cache adapter
